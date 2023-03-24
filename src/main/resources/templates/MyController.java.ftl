@@ -50,10 +50,10 @@ import ${superControllerClassPackage};
 class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
 <#else>
 <#if superControllerClass??>
-@Api("${table.comment!}Api")
+@Api(tags = "${table.comment!}Api")
 public class ${table.controllerName} extends ${superControllerClass} {
 <#else>
-@Api("${table.comment!}Api")
+@Api(tags = "${table.comment!}Api")
 public class ${table.controllerName} {
 </#if>
     @Resource
