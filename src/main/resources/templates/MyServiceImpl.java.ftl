@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * ${table.comment!} 服务实现类
+ * ${table.comment!}ServiceImpl
  * </p>
  *
  * @author ${author}

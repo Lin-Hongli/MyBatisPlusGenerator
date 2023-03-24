@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 /**
 * <p>
-* ${table.comment!} 查询对象
+* ${table.comment!}Query
 * </p>
 *
 * @author ${author}
@@ -24,7 +24,7 @@ import java.io.Serializable;
 @Data
 </#if>
 <#if swagger2>
-@ApiModel(value="${cfg.EntityQuery}对象", description="${table.comment!}的Query查询对象")
+@ApiModel(value="${cfg.EntityQuery}", description="${table.comment!}查询对象")
 </#if>
 public class ${cfg.EntityQuery} implements Serializable {
 

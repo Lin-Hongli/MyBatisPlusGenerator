@@ -34,7 +34,7 @@ import ${superControllerClassPackage};
 
 /**
  * <p>
- * ${table.comment!} 前端控制器
+ * ${table.comment!}Controller
  * </p>
  *
  * @author ${author}
@@ -50,10 +50,10 @@ import ${superControllerClassPackage};
 class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
 <#else>
 <#if superControllerClass??>
-@Api("${entity}服务Api")
+@Api("${table.comment!}Api")
 public class ${table.controllerName} extends ${superControllerClass} {
 <#else>
-@Api("${entity}服务Api")
+@Api("${table.comment!}Api")
 public class ${table.controllerName} {
 </#if>
     @Resource
@@ -63,7 +63,7 @@ public class ${table.controllerName} {
     * 新增
     */
     @PostMapping(value = "/save")
-    @ApiOperation(value = "新增", notes = "传入${table.entityPath}Query")
+    @ApiOperation(value = "新增", notes = "传入${entity}Query")
     public Result<Object> save(@Validated @RequestBody ${entity}Query ${table.entityPath}Query) {
         ${entity} ${table.entityPath} = new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Query, ${table.entityPath});
@@ -74,7 +74,7 @@ public class ${table.controllerName} {
     * 删除
     */
     @PostMapping(value = "/remove")
-    @ApiOperation(value = "删除", notes = "传入${table.entityPath}Query")
+    @ApiOperation(value = "删除", notes = "传入id")
         public Result<Object> remove(@RequestParam(name = "id") @NotEmpty(message = "id不能为空") String id) {
         return Result.success(${table.entityPath}Service.removeById(Long.valueOf(id)));
     }
@@ -82,9 +82,9 @@ public class ${table.controllerName} {
     /**
     * 修改
     */
-    @PostMapping("/modify")
-    @ApiOperation(value = "修改", notes = "传入${table.entityPath}Query")
-    public Result<Object> modify(@Validated(${entity}Query.Update.class) @RequestBody ${entity}Query ${table.entityPath}Query) {
+    @PostMapping("/update")
+    @ApiOperation(value = "修改", notes = "传入${entity}Query")
+    public Result<Object> update(@Validated(${entity}Query.Update.class) @RequestBody ${entity}Query ${table.entityPath}Query) {
         ${entity} ${table.entityPath} = new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Query, ${table.entityPath});
         ${table.entityPath}.setId(Long.valueOf(${table.entityPath}Query.getId()));
@@ -101,7 +101,7 @@ public class ${table.controllerName} {
     /**
     * 详情
     */
-    @ApiOperation(value = "根据id查询(接口说明)", httpMethod = "GET(接口请求方式)", response = Result.class, notes = "1.0.0(接口发布说明)")
+    @ApiOperation(value = "根据id查询(接口说明)", httpMethod = "GET", response = Result.class, notes = "1.0.0版本")
     @ApiParam(required = true, name = "id(参数名称)", value = "这是一个id(参数具体描述)")
     @GetMapping(path = "/query")
     public Result<Object> query(@RequestParam(name = "id") @NotEmpty(message = "id不能为空") String id) {
@@ -155,7 +155,7 @@ public class ${table.controllerName} {
     * 新增或修改
     */
     @PostMapping("/submit")
-    @ApiOperation(value = "新增或修改", notes = "传入${table.entityPath}Query")
+    @ApiOperation(value = "新增或修改", notes = "传入${entity}Query")
     public Result<Object> submit(@Validated @RequestBody ${entity}Query ${table.entityPath}Query) {
         ${entity} ${table.entityPath} = new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Query, ${table.entityPath});

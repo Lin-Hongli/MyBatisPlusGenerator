@@ -14,7 +14,7 @@ import lombok.Data;
 import java.io.Serializable;
 /**
 * <p>
-* ${table.comment!} 视图对象
+* ${table.comment!}VO
 * </p>
 *
 * @author ${author}
@@ -24,7 +24,7 @@ import java.io.Serializable;
 @Data
 </#if>
 <#if swagger2>
-@ApiModel(value="${cfg.EntityVO}对象", description="${table.comment!}的VO视图对象")
+@ApiModel(value="${cfg.EntityVO}", description="${table.comment!}视图对象")
 </#if>
 public class ${cfg.EntityVO} implements Serializable {
 
